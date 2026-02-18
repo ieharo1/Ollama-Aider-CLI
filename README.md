@@ -1,145 +1,125 @@
-# 🚀 Ollama + Aider CLI
+# 🤖 Ollama + Aider CLI
 
-> **Tu propio "Claude Code" pero 100% gratis, local y multiplataforma**
+Tu propio "Claude Code" pero 100% gratis, local y multiplataforma desarrollado por **Isaac Esteban Haro Torres**.
 
-Este repositorio documenta paso a paso cómo montar un **CLI de Inteligencia Artificial para desarrollo** usando **Ollama + Aider**, ideal para trabajar directamente sobre proyectos reales (Django, Python, JS, etc.) desde la terminal.
+---
+
+## 📝 Descripción
+
+Este repositorio documenta paso a paso cómo montar un CLI de Inteligencia Artificial para desarrollo usando Ollama + Aider, ideal para trabajar directamente sobre proyectos reales desde la terminal.
 
 La idea es simple:
+- ❌ Sin APIs de pago
+- ❌ Sin límites artificiales
+- ❌ Sin enviar tu código a terceros
+- ✅ Todo corre local
+- ✅ Funciona directo sobre tu repo
 
-* ❌ Sin APIs de pago
-* ❌ Sin límites artificiales
-* ❌ Sin enviar tu código a terceros
-* ✅ Todo corre local
-* ✅ Funciona directo sobre tu repo
+---
+
+## 🎯 Para qué sirve
+
+- Refactors grandes de código
+- Análisis de proyectos locales
+- Generación y modificación de código
+- Proyectos que requieren privacidad
+- Trabajo offline
+- Asistencia de programación en terminal
+
+---
+
+## 🏗 Arquitectura
+
+```
+Tu Proyecto → Aider CLI → Ollama → Modelo LLM Local
+              ↓
+         Git (control de versiones)
+```
 
 ---
 
 ## 🧠 ¿Qué es esto?
 
-* **Ollama**: motor local para correr modelos LLM (DeepSeek, LLaMA, etc.)
-* **Aider**: CLI que conecta un LLM con tu repositorio Git para leer, analizar y modificar código
+- **Ollama**: motor local para correr modelos LLM (DeepSeek, LLaMA, Mistral, etc.)
+- **Aider**: CLI que conecta un LLM con tu repositorio Git para leer, analizar y modificar código
 
-Combinados, tienes un **asistente de programación en terminal** que:
-
-* entiende la estructura de tu proyecto
-* analiza arquitectura
-* propone mejoras
-* genera y modifica código
+Combinados, tienes un asistente de programación en terminal que:
+- Entiende la estructura de tu proyecto
+- Analiza arquitectura
+- Propone mejoras
+- Genera y modifica código
 
 ---
 
-## 🧩 Requisitos
+## 💻 Requisitos
 
 ### Sistema
 
-* Windows 10 / 11 (x64)
-* macOS o Linux (también funciona)
-* **RAM recomendada**:
-
-  * mínimo: 8 GB
-  * ideal: 16 GB
+- Windows 10 / 11 (x64)
+- macOS o Linux
+- **RAM recomendada**: 8 GB mínimo, 16 GB ideal
 
 ### Software
 
-* Git
-* Python 3.10+
-* Node.js (opcional)
+- Git
+- Python 3.10+
+- Node.js (opcional)
 
 ---
 
-## 1️⃣ Instalar Ollama
+## 🚀 Instalación
 
-Descarga e instala Ollama desde:
+### 1️⃣ Instalar Ollama
 
-👉 [https://ollama.com](https://ollama.com)
+Descarga e instala desde: https://ollama.com
 
-> En Windows, Ollama se ejecuta como servicio automáticamente.
-
-Verifica instalación:
-
+Verifica:
 ```powershell
 ollama list
 ```
 
----
+### 2️⃣ Descargar modelos
 
-## 2️⃣ Descargar modelos recomendados
-
-### Modelo ligero (recomendado para empezar)
-
+**Modelo ligero (recomendado):**
 ```powershell
 ollama pull deepseek-coder:latest
 ```
 
-### Modelo más potente (opcional)
-
+**Modelo más potente:**
 ```powershell
 ollama pull deepseek-coder:6.7b
 ```
 
-Verifica:
-
-```powershell
-ollama list
-```
-
----
-
-## 3️⃣ Configurar variable de entorno (IMPORTANTE)
-
-Aider necesita saber dónde está Ollama:
+### 3️⃣ Configurar variable de entorno
 
 ```powershell
 setx OLLAMA_API_BASE http://127.0.0.1:11434
 ```
 
-Luego:
-
-* cierra todas las terminales
-* abre una nueva
-
-Verifica:
-
-```powershell
-echo $env:OLLAMA_API_BASE
-```
-
----
-
-## 4️⃣ Instalar Aider
-
-Dentro de tu entorno Python (recomendado usar venv):
+### 4️⃣ Instalar Aider
 
 ```powershell
 pip install aider-chat
 ```
 
 Verifica:
-
 ```powershell
 aider --version
 ```
 
 ---
 
-## 5️⃣ Usar Aider en tu proyecto
-
-### 1. Entra al proyecto
+## 💡 Uso
 
 ```powershell
+# Entra al proyecto
 cd ruta/a/tu/proyecto
-```
 
-### 2. Activa el entorno virtual (si aplica)
-
-```powershell
+# Activa entorno virtual (si aplica)
 .venv\Scripts\activate
-```
 
-### 3. Arranca Aider (configuración estable)
-
-```powershell
-aider --model ollama/deepseek-coder:latest --map-tokens 512 --no-auto-commit --no-show-model-warnings
+# Arranca Aider
+aider --model ollama/deepseek-coder:latest --map-tokens 512 --no-auto-commit
 ```
 
 ---
@@ -157,84 +137,75 @@ no hagas cambios
 ```
 
 Luego puedes avanzar a:
-
-* refactors
-* mejoras de arquitectura
-* generación de features
+- Refactors
+- Mejoras de arquitectura
+- Generación de features
 
 ---
 
 ## 🛠️ Comandos útiles
 
-### Ver modelos activos
-
 ```powershell
+# Ver modelos activos
 ollama ps
-```
 
-### Probar Ollama directamente
-
-```powershell
+# Probar Ollama directamente
 ollama run deepseek-coder:latest
+
+# Ver ayuda
+aider --help
 ```
 
 ---
 
 ## ⚠️ Problemas comunes
 
-### ❌ Error: puerto 11434 en uso
-
+### Error: puerto 11434 en uso
 ```
 Only one usage of each socket address...
 ```
+✅ No es un error - Ollama ya está corriendo
 
-✔ No es un error
-✔ Ollama ya está corriendo
-✔ NO ejecutes `ollama serve`
-
----
-
-### ❌ Aider se queda en "Waiting for model"
-
-Soluciones:
-
-* reduce `--map-tokens`
-* usa `deepseek-coder:latest`
-* cierra apps pesadas
+### Aider se queda en "Waiting for model"
+- Reduce `--map-tokens`
+- Usa `deepseek-coder:latest`
+- Cierra apps pesadas
 
 ---
 
-## 📌 ¿Cuándo usar esto?
+## 🆚 Cuándo usar esto vs CLI cloud
 
-✔ Refactors grandes
-✔ Proyectos locales
-✔ Código sensible
-✔ Trabajo offline
-
-Para proyectos pequeños o rapidez extrema, un CLI cloud (ej: Gemini CLI) puede ser más veloz.
+| Característica | Ollama + Aider | CLI Cloud |
+|---------------|----------------|-----------|
+| Costo | Gratis | Pago por uso |
+| Privacidad | Total | Envía código |
+| Offline | ✅ | ❌ |
+| Velocidad | Depende HW | Rápido |
+| Ideal para | Proyectos grandes | Queries rápidos |
 
 ---
 
-## ⭐ Conclusión
+## 📌 Conclusión
 
 Este stack te da:
+- Un CLI de IA estilo Claude Code
+- Completamente gratis
+- Control total sobre tu código
+- Extensible y reutilizable
 
-* un **CLI de IA estilo Claude Code**
-* completamente gratis
-* control total sobre tu código
-* extensible y reutilizable
-
-Ideal para desarrolladores que quieren **potencia sin dependencia de APIs de pago**.
-
----
-
-## 🧑‍💻 Autor
-
-Isaac Haro
-Ingeniero en Sistemas · Full Stack · Automatización & Data
+Ideal para desarrolladores que quieren potencia sin dependencia de APIs de pago.
 
 ---
 
-## 📄 Licencia
+## 👨‍💻 Desarrollado por Isaac Esteban Haro Torres
 
-MIT — úsalo, modifícalo y compártelo 🚀
+**Ingeniero en Sistemas · Full Stack · Automatización · Data**
+
+- 📧 Email: zackharo1@gmail.com
+- 📱 WhatsApp: 098805517
+- 💻 GitHub: https://github.com/ieharo1
+- 🌐 Portafolio: https://ieharo1.github.io/portafolio-isaac.haro/
+
+---
+
+© 2026 Isaac Esteban Haro Torres - Todos los derechos reservados.
